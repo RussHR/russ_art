@@ -14,14 +14,14 @@ uglify = require('gulp-uglify')
 # Paths
 paths =
   scripts: ['assets/js/*.js']
-  root: 'Build'
+  root: 'dist'
 
 # Jade to HTML
 gulp.task 'jade', ->
   gulp.src(['**/*.jade', '!./{node_modules/**, node_modules}'])
     .pipe(plumber())
     .pipe(jade({pretty: true}))
-    .pipe(gulp.dest('Build/'))
+    .pipe(gulp.dest('dist/'))
     .pipe(connect.reload())
 
 # Compile Sass
@@ -33,9 +33,9 @@ gulp.task 'sass', ->
       outputStyle: 'expanded'
     ))
     .pipe(autoprefix())
-    .pipe(gulp.dest('Build/assets/css'))
+    .pipe(gulp.dest('dist/assets/css'))
     .pipe(minifycss())
-    .pipe(gulp.dest('Build/assets/css'))
+    .pipe(gulp.dest('dist/assets/css'))
     .pipe(connect.reload())
 
 # Uglify JS
@@ -43,7 +43,7 @@ gulp.task 'uglify', ->
   gulp.src(paths.scripts)
     .pipe(plumber())
     .pipe(uglify({outSourceMap: false}))
-    .pipe(gulp.dest('Build/assets/js'))
+    .pipe(gulp.dest('dist/assets/js'))
 
 # connect
 gulp.task 'connect', ->
