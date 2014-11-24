@@ -2,20 +2,19 @@
 gulp = require('gulp')
 
 # Plugins
-jade = require('gulp-jade')
-sass = require('gulp-sass')
-plumber = require('gulp-plumber')
 autoprefix = require('gulp-autoprefixer')
-minifycss = require('gulp-minify-css')
-uglify = require('gulp-uglify')
+connect = require('gulp-connect')
+jade = require('gulp-jade')
 livereload = require('gulp-livereload')
-connect = require('connect')
-server = connect()
+minifycss = require('gulp-minify-css')
+plumber = require('gulp-plumber')
+sass = require('gulp-sass')
+uglify = require('gulp-uglify')
 
 # Paths
 paths =
   scripts: ['assets/js/*.js']
-  images: ['assets/img/**']
+  root: 'Build'
 
 # Jade to HTML
 gulp.task 'jade', ->
@@ -23,7 +22,7 @@ gulp.task 'jade', ->
     .pipe(plumber())
     .pipe(jade({pretty: true}))
     .pipe(gulp.dest('Build/'))
-    .pipe(livereload(server));
+    .pipe(connect.reload())
 
 # Compile Sass
 gulp.task 'sass', ->
@@ -37,7 +36,7 @@ gulp.task 'sass', ->
     .pipe(gulp.dest('Build/assets/css'))
     .pipe(minifycss())
     .pipe(gulp.dest('Build/assets/css'))
-    .pipe(livereload(server))
+    .pipe(connect.reload())
 
 # Uglify JS
 gulp.task 'uglify', ->
@@ -46,9 +45,12 @@ gulp.task 'uglify', ->
     .pipe(uglify({outSourceMap: false}))
     .pipe(gulp.dest('Build/assets/js'))
 
-# Livereload
-gulp.task 'listen', ->
-  server.use(connect.static('Build')).listen(8000, next);
+# connect
+gulp.task 'connect', ->
+  connect.server
+    root: paths.root
+    port: 8000
+    livereload: true
 
 # Watch files
 gulp.task 'watch', (event) ->
@@ -56,4 +58,5 @@ gulp.task 'watch', (event) ->
   gulp.watch('assets/scss/*.scss', ['sass'])
   gulp.watch(paths.scripts, ['uglify'])
 
-gulp.task('default', ['listen', 'watch'])
+gulp.task('default', ['connect', 'watch'])
+gulp.task('serve', ['jade', 'sass', 'uglify', 'connect', 'watch'])

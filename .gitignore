@@ -1,6 +1,4 @@
 node_modules/
 .DS_Store
-Build/assets/
-Build/*.html
+Build/
 bower_components/
-README.html

@@ -11,3 +11,7 @@ It uses the [Gulp - Foundation 5 Template](https://git.anguiano.me/christian/gul
   * `assets/scss/main.scss`: Application styles go here.
   * `assets/scss/_settings.scss`: Configure Foundation settings here.
   * `Build/`: compiled versions of Jade and Sass go here.
+
+## Other notes
+
+  * If the Foundation files are missing (i.e., the bower_components directory), run `bower install`
