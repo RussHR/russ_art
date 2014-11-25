@@ -8,9 +8,9 @@ It uses the [Gulp - Foundation 5 Template](https://git.anguiano.me/christian/gul
 
 ## Directory Structure
 
-  * `assets/scss/main.scss`: Application styles go here.
-  * `assets/scss/_settings.scss`: Configure Foundation settings here.
-  * `Build/`: compiled versions of Jade and Sass go here.
+  * `app/scss/main.scss`: Application styles go here.
+  * `app/scss/_settings.scss`: Configure Foundation settings here.
+  * `dist/`: compiled versions of Jade and Sass go here.
 
 ## Other notes
 

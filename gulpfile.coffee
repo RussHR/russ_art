@@ -13,29 +13,28 @@ uglify = require('gulp-uglify')
 
 # Paths
 paths =
-  scripts: ['assets/js/*.js']
+  scripts: ['app/scripts/*.js']
   root: 'dist'
 
 # Jade to HTML
 gulp.task 'jade', ->
-  gulp.src(['**/*.jade', '!./{node_modules/**, node_modules}'])
+  gulp.src('app/pages/*.jade')
     .pipe(plumber())
     .pipe(jade({pretty: true}))
-    .pipe(gulp.dest('dist/'))
+    .pipe(gulp.dest('dist/pages/'))
     .pipe(connect.reload())
 
 # Compile Sass
 gulp.task 'sass', ->
-  gulp.src(['assets/scss/*.scss', '!assets/scss/_variables.scss'])
+  gulp.src(['app/styles/*.sass', 'app/styles/*.scss'])
     .pipe(plumber())
     .pipe(sass(
-      includePaths: ['assets/scss', 'bower_components/foundation/scss']
-      outputStyle: 'expanded'
+      includePaths: ['app/styles', 'bower_components/foundation/scss']
+      sourceComments: 'normal' # this hack allows compilation of sass syntax
     ))
     .pipe(autoprefix())
-    .pipe(gulp.dest('dist/assets/css'))
     .pipe(minifycss())
-    .pipe(gulp.dest('dist/assets/css'))
+    .pipe(gulp.dest('dist/'))
     .pipe(connect.reload())
 
 # Uglify JS
@@ -43,7 +42,7 @@ gulp.task 'uglify', ->
   gulp.src(paths.scripts)
     .pipe(plumber())
     .pipe(uglify({outSourceMap: false}))
-    .pipe(gulp.dest('dist/assets/js'))
+    .pipe(gulp.dest('dist/app/js'))
 
 # connect
 gulp.task 'connect', ->
@@ -55,7 +54,7 @@ gulp.task 'connect', ->
 # Watch files
 gulp.task 'watch', (event) ->
   gulp.watch('**/*.jade', ['jade'])
-  gulp.watch('assets/scss/*.scss', ['sass'])
+  gulp.watch('app/scss/*.scss', ['sass'])
   gulp.watch(paths.scripts, ['uglify'])
 
 gulp.task('default', ['connect', 'watch'])
