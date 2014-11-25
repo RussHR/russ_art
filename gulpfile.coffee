@@ -3,9 +3,9 @@ gulp = require('gulp')
 
 # Plugins
 autoprefix = require('gulp-autoprefixer')
+concat = require('gulp-concat')
 connect = require('gulp-connect')
 jade = require('gulp-jade')
-livereload = require('gulp-livereload')
 minifycss = require('gulp-minify-css')
 plumber = require('gulp-plumber')
 sass = require('gulp-sass')
@@ -14,14 +14,14 @@ uglify = require('gulp-uglify')
 # Paths
 paths =
   scripts: ['app/scripts/*.js']
-  root: 'dist'
+  root: 'dist/'
 
 # Jade to HTML
 gulp.task 'jade', ->
-  gulp.src('app/pages/*.jade')
+  gulp.src('app/*.jade')
     .pipe(plumber())
     .pipe(jade({pretty: true}))
-    .pipe(gulp.dest('dist/pages/'))
+    .pipe(gulp.dest('dist/'))
     .pipe(connect.reload())
 
 # Compile Sass
@@ -33,6 +33,7 @@ gulp.task 'sass', ->
       sourceComments: 'normal' # this hack allows compilation of sass syntax
     ))
     .pipe(autoprefix())
+    .pipe(concat('russ_art_main.css'))
     .pipe(minifycss())
     .pipe(gulp.dest('dist/'))
     .pipe(connect.reload())
