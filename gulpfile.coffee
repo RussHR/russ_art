@@ -1,3 +1,4 @@
+# use process.stdout.write instead of console.log
 # Gulp
 gulp = require('gulp')
 
@@ -6,6 +7,7 @@ autoprefix = require('gulp-autoprefixer')
 coffee = require('gulp-coffee')
 concat = require('gulp-concat')
 connect = require('gulp-connect')
+gulpsync = require('gulp-sync')(gulp)
 jade = require('gulp-jade')
 minifycss = require('gulp-minify-css')
 plumber = require('gulp-plumber')
@@ -41,16 +43,18 @@ gulp.task 'sass', ->
     .pipe(gulp.dest('dist/'))
     .pipe(connect.reload())
 
+gulp.task('scripts', ['coffee', 'uglify'])
 # Compile Coffee
-gulp.task 'coffee', ->
+gulp.task 'coffee', (finished) ->
   gulp.src(paths.coffee)
     .pipe(plumber())
     .pipe(coffee())
     .pipe(concat('compiled_coffee.js'))
     .pipe(gulp.dest('app/scripts/js'))
     .pipe(connect.reload())
+  finished()
 # Compile JS
-gulp.task 'uglify' ->
+gulp.task 'uglify', ->
   gulp.src(paths.js)
     .pipe(plumber())
     .pipe(concat('russ_art_main.js'))
