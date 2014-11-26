@@ -3,6 +3,7 @@ gulp = require('gulp')
 
 # Plugins
 autoprefix = require('gulp-autoprefixer')
+coffee = require('gulp-coffee')
 concat = require('gulp-concat')
 connect = require('gulp-connect')
 jade = require('gulp-jade')
@@ -13,7 +14,9 @@ uglify = require('gulp-uglify')
 
 # Paths
 paths =
-  scripts: ['app/scripts/*.js']
+  coffee: ['app/scripts/coffee/*.coffee']
+  # these must be listed in order
+  js: ['app/scripts/js/*.js', 'app/scripts/js/compiled_coffee.js']
   root: 'dist/'
 
 # Jade to HTML
@@ -38,12 +41,22 @@ gulp.task 'sass', ->
     .pipe(gulp.dest('dist/'))
     .pipe(connect.reload())
 
-# Uglify JS
-gulp.task 'uglify', ->
-  gulp.src(paths.scripts)
+# Compile Coffee
+gulp.task 'coffee', ->
+  gulp.src(paths.coffee)
     .pipe(plumber())
+    .pipe(coffee())
+    .pipe(concat('compiled_coffee.js'))
+    .pipe(gulp.dest('app/scripts/js'))
+    .pipe(connect.reload())
+# Compile JS
+gulp.task 'uglify' ->
+  gulp.src(paths.js)
+    .pipe(plumber())
+    .pipe(concat('russ_art_main.js'))
     .pipe(uglify({outSourceMap: false}))
-    .pipe(gulp.dest('dist/app/js'))
+    .pipe(gulp.dest('dist/'))
+    .pipe(connect.reload())
 
 # connect
 gulp.task 'connect', ->
@@ -56,7 +69,7 @@ gulp.task 'connect', ->
 gulp.task 'watch', (event) ->
   gulp.watch('**/*.jade', ['jade'])
   gulp.watch('app/scss/*.scss', ['sass'])
-  gulp.watch(paths.scripts, ['uglify'])
+  gulp.watch(paths.scripts, ['scripts'])
 
 gulp.task('default', ['connect', 'watch'])
-gulp.task('serve', ['jade', 'sass', 'uglify', 'connect', 'watch'])
+gulp.task('serve', ['jade', 'sass', 'scripts', 'connect', 'watch'])
