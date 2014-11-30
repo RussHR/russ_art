@@ -20,6 +20,11 @@ paths =
   js: ['app/scripts/js/*.js', 'app/scripts/js/compiled_coffee.js']
   root: 'dist/'
 
+# Images (favicon for now)
+gulp.task 'images', ->
+  gulp.src('app/favicon.ico')
+    .pipe(gulp.dest('dist/'))
+
 # Jade to HTML
 gulp.task 'jade', ->
   gulp.src('app/*.jade')
@@ -39,7 +44,7 @@ gulp.task 'sass', ->
     .pipe(autoprefix())
     .pipe(concat('russ_art_main.css'))
     .pipe(minifycss())
-    .pipe(gulp.dest('dist/'))
+    .pipe(gulp.dest('dist/assets/'))
     .pipe(connect.reload())
 
 gulp.task('scripts', ['coffee', 'uglify'])
@@ -58,7 +63,7 @@ gulp.task 'uglify', ->
     .pipe(plumber())
     .pipe(concat('russ_art_main.js'))
     .pipe(uglify({outSourceMap: false}))
-    .pipe(gulp.dest('dist/'))
+    .pipe(gulp.dest('dist/assets'))
     .pipe(connect.reload())
 
 # connect
@@ -75,4 +80,4 @@ gulp.task 'watch', (event) ->
   gulp.watch(paths.scripts, ['scripts'])
 
 gulp.task('default', ['connect', 'watch'])
-gulp.task('serve', ['jade', 'sass', 'scripts', 'connect', 'watch'])
+gulp.task('serve', ['jade', 'sass', 'scripts', 'images', 'connect', 'watch'])
