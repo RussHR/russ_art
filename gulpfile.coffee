@@ -76,7 +76,7 @@ gulp.task 'connect', ->
 # Watch files
 gulp.task 'watch', (event) ->
   gulp.watch('**/*.jade', ['jade'])
-  gulp.watch('app/scss/*.scss', ['sass'])
+  gulp.watch(['app/**/*.sass', 'app/**/*.scss'], ['sass'])
   gulp.watch(paths.scripts, ['scripts'])
 
 gulp.task('default', ['connect', 'watch'])
