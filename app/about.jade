@@ -1,8 +1,7 @@
 doctype html
 html
   head
-    title Russ Rinzler
-    link(href="assets/russ_art_main.css", rel="stylesheet")
+    include jade_partials/head.jade
   body
     include jade_partials/top_bar.jade
 
@@ -69,6 +68,4 @@ html
           ul 
             li National Society of Collegiate Scholars Membership
 
-    script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js")
-    script(src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.2/js/foundation.min.js")
-    script(src="assets/russ_art_main.js")
+    include jade_partials/footer_assets.jade
