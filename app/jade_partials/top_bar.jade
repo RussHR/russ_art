@@ -8,6 +8,7 @@ nav.top-bar(data-topbar, role="navigation")
         span Menu
   section.top-bar-section
     ul.right
+      - if (activeTab === 'undefined') {activeTab = ''};
       li.has-dropdown
         a(href="#") Artwork
         ul.dropdown
@@ -19,7 +20,7 @@ nav.top-bar(data-topbar, role="navigation")
             a(href="#") 2011
           li
             a(href="#") 2009
-      li
+      li(class=activeTab === 'about' ? "active" : "")
         a(href="/about.html") About/CV
-      li
+      li(class=activeTab === 'links' ? "active" : "")
         a(href="/links.html") Contact/Links
