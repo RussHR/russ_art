@@ -47,23 +47,21 @@ gulp.task 'sass', ->
     .pipe(gulp.dest('dist/assets/'))
     .pipe(connect.reload())
 
-gulp.task('scripts', ['coffee', 'uglify'])
-# Compile Coffee
-gulp.task 'coffee', (finished) ->
-  gulp.src(paths.coffee)
-    .pipe(plumber())
-    .pipe(coffee())
-    .pipe(concat('compiled_coffee.js'))
-    .pipe(gulp.dest('app/scripts/js'))
-    .pipe(connect.reload())
-  finished()
 # Compile JS
-gulp.task 'uglify', ->
+gulp.task 'uglify', ['coffee'], ->
   gulp.src(paths.js)
     .pipe(plumber())
     .pipe(concat('russ_art_main.js'))
     .pipe(uglify({outSourceMap: false}))
     .pipe(gulp.dest('dist/assets'))
+    .pipe(connect.reload())
+# Compile Coffee
+gulp.task 'coffee', ->
+  gulp.src(paths.coffee)
+    .pipe(plumber())
+    .pipe(coffee())
+    .pipe(concat('compiled_coffee.js'))
+    .pipe(gulp.dest('app/scripts/js'))
     .pipe(connect.reload())
 
 # connect
@@ -77,7 +75,7 @@ gulp.task 'connect', ->
 gulp.task 'watch', (event) ->
   gulp.watch('**/*.jade', ['jade'])
   gulp.watch(['app/**/*.sass', 'app/**/*.scss'], ['sass'])
-  gulp.watch(paths.scripts, ['scripts'])
+  # gulp.watch(paths.scripts, ['scripts'])
 
 gulp.task('default', ['connect', 'watch'])
-gulp.task('serve', ['jade', 'sass', 'scripts', 'images', 'connect', 'watch'])
+gulp.task('serve', ['jade', 'sass', 'uglify', 'images', 'connect', 'watch'])
