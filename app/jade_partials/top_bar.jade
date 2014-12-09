@@ -1,4 +1,4 @@
-nav.top-bar(data-topbar, role="navigation")
+nav.top-bar.large-window(role="navigation")
   ul.title-area
     li.name
       h1
@@ -9,17 +9,40 @@ nav.top-bar(data-topbar, role="navigation")
   section.top-bar-section
     ul.right
       - if (activeTab === 'undefined') {activeTab = ''};
-      li.has-dropdown
+      li.has-dropdown(class=activeTab === 'artwork' ? "active" : "")
         a(href="#") Artwork
         ul.dropdown
           li
-            a(href="#") 2014
+            a(href="/2014.html") 2014
           li
-            a(href="#") 2012
+            a(href="/2012.html") 2012
           li
-            a(href="#") 2011
+            a(href="/2010_2011.html") 2010 & 2011
+      li(class=activeTab === 'about' ? "active" : "")
+        a(href="/about.html") About/CV
+      li(class=activeTab === 'links' ? "active" : "")
+        a(href="/links.html") Contact/Links
+
+nav.top-bar.small-window(data-topbar, role="navigation")
+  ul.title-area
+    li.name
+      h1
+        a(href="/") Russ Rinzler
+    li.toggle-topbar
+      a(href="#")
+        span Menu
+  section.top-bar-section
+    ul.right
+      - if (activeTab === 'undefined') {activeTab = ''};
+      li.has-dropdown(class=activeTab === 'artwork' ? "active" : "")
+        a(href="#") Artwork
+        ul.dropdown
           li
-            a(href="#") 2009
+            a(href="/2014.html") 2014
+          li
+            a(href="/2012.html") 2012
+          li
+            a(href="/2010_2011.html") 2010 & 2011
       li(class=activeTab === 'about' ? "active" : "")
         a(href="/about.html") About/CV
       li(class=activeTab === 'links' ? "active" : "")
