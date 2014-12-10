@@ -1,7 +1,6 @@
 # Repo for Russ's Art Portfolio
 
 This is for me to maintain my art portfolio and learn Gulp.
-It uses the [Gulp - Foundation 5 Template](https://git.anguiano.me/christian/gulp-foundation-5-template) by Christian Anguiano.
 
 ## Tasks
   * `gulp`: Default task that runs everything.
@@ -9,9 +8,8 @@ It uses the [Gulp - Foundation 5 Template](https://git.anguiano.me/christian/gul
 ## Directory Structure
 
   * `app/scss/main.scss`: Application styles go here.
-  * `app/scss/_settings.scss`: Configure Foundation settings here.
   * `dist/`: compiled versions of Jade and Sass go here.
 
 ## Other notes
 
-  * If the Foundation files are missing (i.e., the bower_components directory), run `bower install`
+  * blehhhh

@@ -38,7 +38,7 @@ gulp.task 'sass', ->
   gulp.src(['app/styles/*.sass', 'app/styles/*.scss'])
     .pipe(plumber())
     .pipe(sass(
-      includePaths: ['app/styles', 'bower_components/foundation/scss']
+      includePaths: ['app/styles']
       sourceComments: 'normal' # this hack allows compilation of sass syntax
     ))
     .pipe(autoprefix())
