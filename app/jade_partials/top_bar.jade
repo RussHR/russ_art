@@ -13,16 +13,16 @@ nav.navbar.navbar-default(role="navigation")
 
     #main-nav.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
-        li.dropdown(class=activeTab === 'artwork' ? "active" : "")
+        li.dropdown
           a.dropdown-toggle(href="#", data-toggle="dropdown", role="button",
             aria-expanded="false") Artwork
             span.caret
           ul.dropdown-menu(role="menu")
-            li
+            li(class=activeTab === '2014' ? "active" : "")
               a(href="/2014.html") 2014
-            li
+            li(class=activeTab === '2012' ? "active" : "")
               a(href="/2012.html") 2012
-            li
+            li(class=activeTab === '2010_2011' ? "active" : "")
               a(href="/2010_2011.html") 2010 & 2011
 
         li(class=activeTab === 'about' ? "active" : "")
