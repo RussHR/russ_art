@@ -4,4 +4,5 @@ $(document).ready ->
     $('.thumbnail').magnificPopup
       type: 'image'
       closeOnContentClick: true
+    image:
       titleSrc: 'data-title'

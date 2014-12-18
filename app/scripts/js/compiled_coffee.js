@@ -1,11 +1,15 @@
 (function() {
   $(document).ready(function() {
     if ($('.thumbnail').length !== 0) {
-      return $('.thumbnail').magnificPopup({
+      $('.thumbnail').magnificPopup({
         type: 'image',
-        closeOnContentClick: true,
-        titleSrc: 'data-title'
+        closeOnContentClick: true
       });
+      return {
+        image: {
+          titleSrc: 'data-title'
+        }
+      };
     }
   });
 
