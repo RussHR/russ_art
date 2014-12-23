@@ -35,7 +35,7 @@ gulp.task 'jade', ->
 
 # Compile Sass
 gulp.task 'sass', ->
-  gulp.src(['app/styles/*.sass', 'app/styles/*.scss'])
+  gulp.src(['app/styles/foundation.scss', 'app/styles/*.sass', 'app/styles/*.scss'])
     .pipe(plumber())
     .pipe(sass(
       includePaths: ['app/styles']

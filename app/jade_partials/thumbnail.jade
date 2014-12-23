@@ -1,7 +1,3 @@
-.col-xs-6.col-sm-4.col-md-2
-  a.thumbnail(
-    href=thumbnail.url,
-    title=thumbnail.title,
-    data-mfp-src=thumbnail.url
-  )
-    img(src=thumbnail.url)
+li
+  a(href=thumbnail.url)
+    img(src=thumbnail.url, data-caption=thumbnail.title)

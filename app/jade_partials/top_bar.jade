@@ -1,31 +1,26 @@
 - if (activeTab === 'undefined') {activeTab = ''};
 
-nav.navbar.navbar-default(role="navigation")
-  .container-fluid
-    //- this part is for the collapse menu
-    .navbar-header
-      button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="#main-nav")
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      a.navbar-brand(href="/") Russ Rinzler
+nav.top-bar(role="navigation", data-topbar)
+  ul.title-area
+    li.name
+      h1
+        a(href="/") Russ Rinzler
+    li.toggle-topbar.menu-icon
+      a(href="#")
+        span Menu
 
-    #main-nav.collapse.navbar-collapse
-      ul.nav.navbar-nav.navbar-right
-        li.dropdown
-          a.dropdown-toggle(href="#", data-toggle="dropdown", role="button",
-            aria-expanded="false") Artwork
-            span.caret
-          ul.dropdown-menu(role="menu")
-            li(class=activeTab === '2014' ? "active" : "")
-              a(href="/2014.html") 2014
-            li(class=activeTab === '2012' ? "active" : "")
-              a(href="/2012.html") 2012
-            li(class=activeTab === '2010_2011' ? "active" : "")
-              a(href="/2010_2011.html") 2010 & 2011
-
-        li(class=activeTab === 'about' ? "active" : "")
-          a(href="/about.html") About/CV
-        li(class=activeTab === 'links' ? "active" : "")
-          a(href="/links.html") Contact/Links
+  section.top-bar-section
+    ul.right
+      li.has-dropdown
+        a(href="#") Artwork
+        ul.dropdown
+          li(class=activeTab === '2014' ? "active" : "")
+            a(href="/2014.html") 2014
+          li(class=activeTab === '2012' ? "active" : "")
+            a(href="/2012.html") 2012
+          li(class=activeTab === '2010_2011' ? "active" : "")
+            a(href="/2010_2011.html") 2010 & 2011
+      li(class=activeTab === 'about' ? "active" : "")
+        a(href="/about.html") About/CV
+      li(class=activeTab === 'links' ? "active" : "")
+        a(href="/links.html") Contact/Links
