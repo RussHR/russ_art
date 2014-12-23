@@ -14,30 +14,19 @@ body, h1, h2, h3, h4, h5, h6, .top-bar-section ul li > a
 hr
   border-top-color: rgb(245, 245, 245)
 
-// navbar
+// navbar rgb(209, 203, 191) is old color
 .top-bar, .top-bar-section li:not(.has-form) a:not(.button)
-  background-color: rgb(209, 203, 191)
+  background-color: rgb(90, 85, 77)
 
-  .navbar-brand
-    color: black
+.top-bar-section li.active:not(.has-form) a:not(.button)
+  background-color: rgb(161, 178, 205)
+  color: black
 
-  .navbar-nav
-    >.active
-      >a
-        color: black
-.dropdown-menu
-  background-color: rgb(245, 245, 245)
+.has-dropdown-artwork
+  @media (min-width: 641px)
+    width: 101px
 
-  >li
-    >a:hover, >a:focus
-      background-color: rgb(231, 231, 231)
-  >.active
-    >a
-      background-color: rgb(225, 225, 225)
-      color: black
-    >a:hover, >a:active
-      background-color: rgb(150, 150, 150)
-
+// lightbox
 .visible-img img
   max-height: 85%
   max-width: 85%
