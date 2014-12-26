@@ -7,6 +7,7 @@ autoprefix = require('gulp-autoprefixer')
 coffee = require('gulp-coffee')
 concat = require('gulp-concat')
 connect = require('gulp-connect')
+imagemin = require('gulp-imagemin')
 jade = require('gulp-jade')
 minifycss = require('gulp-minify-css')
 plumber = require('gulp-plumber')
@@ -24,6 +25,9 @@ paths =
 gulp.task 'images', ->
   gulp.src('app/favicon.ico')
     .pipe(gulp.dest(paths.root))
+  gulp.src('app/images/**/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest("#{paths.root}/images"))
 
 # Jade to HTML
 gulp.task 'jade', ->
