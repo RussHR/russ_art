@@ -3,13 +3,14 @@
 This is for me to maintain my art portfolio and learn Gulp.
 
 ## Tasks
-  * `gulp`: Default task that runs everything.
+  * `gulp`: Default task that sets up the server.
+  * `gulp serve`: This preprocesses everything and sets up the server
 
 ## Directory Structure
 
-  * `app/scss/main.scss`: Application styles go here.
-  * `dist/`: compiled versions of Jade and Sass go here.
+  * `app/`: Application everything goes here before compiling.
+  * `./`: Files go into root because github pages
 
 ## Other notes
 
-  * blehhhh
+  * hi! stand up for what's right!

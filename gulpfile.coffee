@@ -18,19 +18,19 @@ paths =
   coffee: ['app/scripts/coffee/*.coffee']
   # these must be listed in order
   js: ['app/scripts/js/*.js', 'app/scripts/js/compiled_coffee.js']
-  root: 'dist/'
+  root: '.'
 
 # Images (favicon for now)
 gulp.task 'images', ->
   gulp.src('app/favicon.ico')
-    .pipe(gulp.dest('dist/'))
+    .pipe(gulp.dest(paths.root))
 
 # Jade to HTML
 gulp.task 'jade', ->
   gulp.src('app/*.jade')
     .pipe(plumber())
     .pipe(jade({pretty: true}))
-    .pipe(gulp.dest('dist/'))
+    .pipe(gulp.dest(paths.root))
     .pipe(connect.reload())
 
 # Compile Sass
@@ -44,7 +44,7 @@ gulp.task 'sass', ->
     .pipe(autoprefix())
     .pipe(concat('russ_art_main.css'))
     .pipe(minifycss())
-    .pipe(gulp.dest('dist/assets/'))
+    .pipe(gulp.dest("#{paths.root}/assets/"))
     .pipe(connect.reload())
 
 # Compile JS
@@ -53,7 +53,7 @@ gulp.task 'uglify', ['coffee'], ->
     .pipe(plumber())
     .pipe(concat('russ_art_main.js'))
     .pipe(uglify({outSourceMap: false}))
-    .pipe(gulp.dest('dist/assets'))
+    .pipe(gulp.dest("#{paths.root}/assets"))
     .pipe(connect.reload())
 # Compile Coffee
 gulp.task 'coffee', ->
